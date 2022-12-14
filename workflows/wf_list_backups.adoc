@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: workflows/wf_list_backups.html 
+keywords:  
+summary:  
+---
+= Enumere los backups
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Es posible enumerar los backups que se crearon para una aplicación gestionada específica.
+
+
+
+=== Antes de empezar
+
+Debe tener el ID de la aplicación gestionada para la que desea enumerar las copias de seguridad. Si es necesario, puede usar el flujo de trabajo link:wf_list_man_apps.html["Enumere las aplicaciones gestionadas"] para localizar la aplicación.
+
+
+
+=== 1. Enumere las copias de seguridad
+
+Realice la siguiente llamada de API de REST.
+
+[cols="25,75"]
+|===
+| Método HTTP | Ruta 
+
+
+| OBTENGA | /Accounts/{account_id}/k8s/v1/managedApps/{managedApp_id}/appbackups 
+|===
+
+
+===== Parámetros de entrada adicionales
+
+Además de los parámetros comunes con todas las llamadas API DE REST, en los ejemplos curl de este paso se incluyen los siguientes parámetros.
+
+[cols="25,10,10,55"]
+|===
+| Parámetro | Tipo | Obligatorio | Descripción 
+
+
+| id de aplicación gestionada | Ruta | Sí | Identifica la aplicación gestionada que posee las copias de seguridad mostradas. 
+|===
+
+
+===== Ejemplo curl: Devuelve todos los backups de la aplicación
+
+[source, curl]
+----
+curl --location -i --request GET 'https://astra.netapp.io/accounts/<ACCOUNT_ID>/k8s/v1/managedApps/<MANAGED_APP_ID>/appBackups' --header 'Accept: */*' --header 'Authorization: Bearer <API_TOKEN>'
+----
+
+
+===== Ejemplo de resultado JSON
+
+[source, json]
+----
+{
+  "items": [
+    {
+      "type": "application/astra-appBackup",
+      "version": "1.0",
+      "id": "ed39fdb0-12db-497b-9e46-20036c1fb0d2",
+      "name": "mariadb-mariadb-backup-20210617175900",
+      "state": "completed",
+      "stateUnready": [],
+      "bytesDone": 0,
+      "percentDone": 100,
+      "metadata": {
+        "labels": [],
+        "creationTimestamp": "2021-06-17T17:59:09Z",
+        "modificationTimestamp": "2021-06-17T17:59:09Z",
+        "createdBy": "fb093413-b6fc-4a64-a48a-afc32ada8537"
+      }
+    }
+  ],
+  "metadata": {}
+}
+----

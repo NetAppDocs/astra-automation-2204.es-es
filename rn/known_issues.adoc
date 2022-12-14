@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: rn/known_issues.html 
+keywords:  
+summary:  
+---
+= Problemas conocidos
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Debe revisar todos los problemas conocidos de la versión actual relacionados con la API REST de Astra Control. Los problemas conocidos identifican problemas por los que el uso correcto del producto puede resultar imposible.
+
+
+NOTE: No hay nuevos problemas conocidos con la versión 22.04 de la API REST de Astra Control. Los problemas descritos a continuación se detectaron en versiones anteriores y siguen siendo aplicables con la versión actual.
+
+
+
+== No se detectan todos los dispositivos de almacenamiento de un nodo de almacenamiento back-end
+
+Cuando se emite una llamada API DE REST para recuperar los dispositivos de almacenamiento definidos en un nodo de almacenamiento, no se devuelven todos los dispositivos.
